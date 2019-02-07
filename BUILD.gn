@@ -79,6 +79,8 @@ npm_action("atom_browserify_sandbox") {
     # Use a script to generate all dependencies and put them here.
     "lib/sandboxed_renderer/init.js",
     "lib/sandboxed_renderer/api/exports/electron.js",
+    "tsconfig.electron.json",
+    "tsconfig.json",
   ]
 
   outputs = [
@@ -91,6 +93,12 @@ npm_action("atom_browserify_sandbox") {
     "./lib/sandboxed_renderer/api/exports/electron.js:electron",
     "-t",
     "aliasify",
+    "-p",
+    "[",
+    "tsify",
+    "-p",
+    "tsconfig.electron.json",
+    "]",
     "-o",
     rebase_path(outputs[0]),
   ]
@@ -101,6 +109,8 @@ npm_action("atom_browserify_isolated") {
 
   inputs = [
     "lib/isolated_renderer/init.js",
+    "tsconfig.electron.json",
+    "tsconfig.json",
   ]
 
   outputs = [
@@ -111,6 +121,12 @@ npm_action("atom_browserify_isolated") {
     "lib/isolated_renderer/init.js",
     "-t",
     "aliasify",
+    "-p",
+    "[",
+    "tsify",
+    "-p",
+    "tsconfig.electron.json",
+    "]",
     "-o",
     rebase_path(outputs[0]),
   ]
